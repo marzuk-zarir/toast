@@ -1,0 +1,58 @@
+$toast-colors: (
+    'error': #e5383b,
+    'success': #43aa8b,
+    'info': #00bbf9,
+);
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.toast {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: auto;
+    padding: 18px;
+    font-size: 1.1rem;
+    justify-content: space-between;
+    animation: toast-animation 1.4s;
+
+    &-hide {
+        display: none;
+    }
+
+    & > .bi-x-lg {
+        color: #343a40;
+        text-align: right;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    @each $name, $color in $toast-colors {
+        @debug $color;
+        &-#{$name} {
+            background: rgba($color, 0.78);
+        }
+    }
+}
+
+@keyframes toast-animation {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 100%;
+        transform: none;
+    }
+}
